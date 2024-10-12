@@ -1,0 +1,6 @@
+/home/lot/progmk/test/build/CMakeFiles/cmtest_2.dir
+/home/lot/progmk/test/build/CMakeFiles/edit_cache.dir
+/home/lot/progmk/test/build/CMakeFiles/rebuild_cache.dir
+/home/lot/progmk/test/build/lib_custom/CMakeFiles/mylib_test.dir
+/home/lot/progmk/test/build/lib_custom/CMakeFiles/edit_cache.dir
+/home/lot/progmk/test/build/lib_custom/CMakeFiles/rebuild_cache.dir
