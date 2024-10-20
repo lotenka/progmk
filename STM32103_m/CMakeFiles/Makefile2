@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/lot/progmk/STM32103_m
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/stm32_template.dir/all
+all: CMakeFiles/STM32103_m.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,46 +71,46 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/stm32_template.dir/clean
+clean: CMakeFiles/STM32103_m.dir/clean
 clean: CMakeFiles/bin.dir/clean
 clean: CMakeFiles/hex.dir/clean
 clean: CMakeFiles/flash.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/stm32_template.dir
+# Target rules for target CMakeFiles/STM32103_m.dir
 
 # All Build rule for target.
-CMakeFiles/stm32_template.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=5,6,7,8,9 "Built target stm32_template"
-.PHONY : CMakeFiles/stm32_template.dir/all
+CMakeFiles/STM32103_m.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=1,2,3,4,5 "Built target STM32103_m"
+.PHONY : CMakeFiles/STM32103_m.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/stm32_template.dir/rule: cmake_check_build_system
+CMakeFiles/STM32103_m.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stm32_template.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/STM32103_m.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
-.PHONY : CMakeFiles/stm32_template.dir/rule
+.PHONY : CMakeFiles/STM32103_m.dir/rule
 
 # Convenience name for target.
-stm32_template: CMakeFiles/stm32_template.dir/rule
-.PHONY : stm32_template
+STM32103_m: CMakeFiles/STM32103_m.dir/rule
+.PHONY : STM32103_m
 
 # clean rule for target.
-CMakeFiles/stm32_template.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/clean
-.PHONY : CMakeFiles/stm32_template.dir/clean
+CMakeFiles/STM32103_m.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/clean
+.PHONY : CMakeFiles/STM32103_m.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/bin.dir
 
 # All Build rule for target.
-CMakeFiles/bin.dir/all: CMakeFiles/stm32_template.dir/all
+CMakeFiles/bin.dir/all: CMakeFiles/STM32103_m.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bin.dir/build.make CMakeFiles/bin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bin.dir/build.make CMakeFiles/bin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=1 "Built target bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=6 "Built target bin"
 .PHONY : CMakeFiles/bin.dir/all
 
 # Build rule for subdir invocation for target.
@@ -133,10 +133,10 @@ CMakeFiles/bin.dir/clean:
 # Target rules for target CMakeFiles/hex.dir
 
 # All Build rule for target.
-CMakeFiles/hex.dir/all: CMakeFiles/stm32_template.dir/all
+CMakeFiles/hex.dir/all: CMakeFiles/STM32103_m.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hex.dir/build.make CMakeFiles/hex.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hex.dir/build.make CMakeFiles/hex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=4 "Built target hex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=9 "Built target hex"
 .PHONY : CMakeFiles/hex.dir/all
 
 # Build rule for subdir invocation for target.
@@ -159,10 +159,10 @@ CMakeFiles/hex.dir/clean:
 # Target rules for target CMakeFiles/flash.dir
 
 # All Build rule for target.
-CMakeFiles/flash.dir/all: CMakeFiles/stm32_template.dir/all
+CMakeFiles/flash.dir/all: CMakeFiles/STM32103_m.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=2,3 "Built target flash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=7,8 "Built target flash"
 .PHONY : CMakeFiles/flash.dir/all
 
 # Build rule for subdir invocation for target.

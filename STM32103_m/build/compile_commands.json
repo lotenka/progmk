@@ -1,26 +1,26 @@
 [
 {
   "directory": "/home/lot/progmk/STM32103_m/build",
-  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.o -c /home/lot/progmk/STM32103_m/stm32/startup/startup_stm32f10x_md.c",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.o -c /home/lot/progmk/STM32103_m/stm32/startup/startup_stm32f10x_md.c",
   "file": "/home/lot/progmk/STM32103_m/stm32/startup/startup_stm32f10x_md.c",
-  "output": "CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.o"
+  "output": "CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.o"
 },
 {
   "directory": "/home/lot/progmk/STM32103_m/build",
-  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.o -c /home/lot/progmk/STM32103_m/stm32/system_stm32f10x.c",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.o -c /home/lot/progmk/STM32103_m/stm32/system_stm32f10x.c",
   "file": "/home/lot/progmk/STM32103_m/stm32/system_stm32f10x.c",
-  "output": "CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.o"
+  "output": "CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.o"
 },
 {
   "directory": "/home/lot/progmk/STM32103_m/build",
-  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/syscalls/syscalls.c.o -c /home/lot/progmk/STM32103_m/syscalls/syscalls.c",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.o -c /home/lot/progmk/STM32103_m/syscalls/syscalls.c",
   "file": "/home/lot/progmk/STM32103_m/syscalls/syscalls.c",
-  "output": "CMakeFiles/stm32_template.dir/syscalls/syscalls.c.o"
+  "output": "CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.o"
 },
 {
   "directory": "/home/lot/progmk/STM32103_m/build",
-  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/stm32_template.dir/main.c.o -c /home/lot/progmk/STM32103_m/main.c",
+  "command": "arm-none-eabi-gcc -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/main.c.o -c /home/lot/progmk/STM32103_m/main.c",
   "file": "/home/lot/progmk/STM32103_m/main.c",
-  "output": "CMakeFiles/stm32_template.dir/main.c.o"
+  "output": "CMakeFiles/STM32103_m.dir/main.c.o"
 }
 ]

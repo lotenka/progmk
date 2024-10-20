@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/hex"
-  "build/stm32_template.hex"
+  "STM32103_m.hex"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -44,7 +44,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/stm32_template.dir/DependInfo.cmake"
+  "CMakeFiles/STM32103_m.dir/DependInfo.cmake"
   "CMakeFiles/bin.dir/DependInfo.cmake"
   "CMakeFiles/hex.dir/DependInfo.cmake"
   "CMakeFiles/flash.dir/DependInfo.cmake"

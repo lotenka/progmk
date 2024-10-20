@@ -2,6 +2,6 @@
 bb1a475594b62f5fc338605beff040f8 CMakeFiles/bin
 bb1a475594b62f5fc338605beff040f8 CMakeFiles/flash
 bb1a475594b62f5fc338605beff040f8 CMakeFiles/hex
-4944f55539842f7ec9931da7c01c4612 build/stm32_template.bin
-197646343ccfe4069e1c8f2bb2a2db79 build/stm32_template.hex
-fe2ccf9adc83749f098b6d265b516722 flash_target
+3dee1a8187ceb3471d91a8d584ca92ba STM32103_m.bin
+c41bdefe14795e2ac9da4b3f52fc6d72 STM32103_m.hex
+f359f7e9f1a253e6c3a0ba8bfd9cdd7a flash_target

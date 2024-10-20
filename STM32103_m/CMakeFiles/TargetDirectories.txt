@@ -1,4 +1,4 @@
-/home/lot/progmk/STM32103_m/CMakeFiles/stm32_template.dir
+/home/lot/progmk/STM32103_m/CMakeFiles/STM32103_m.dir
 /home/lot/progmk/STM32103_m/CMakeFiles/bin.dir
 /home/lot/progmk/STM32103_m/CMakeFiles/hex.dir
 /home/lot/progmk/STM32103_m/CMakeFiles/flash.dir

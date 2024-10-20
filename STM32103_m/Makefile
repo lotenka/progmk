@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named stm32_template
+# Target rules for targets named STM32103_m
 
 # Build rule for target.
-stm32_template: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stm32_template
-.PHONY : stm32_template
+STM32103_m: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STM32103_m
+.PHONY : STM32103_m
 
 # fast build rule for target.
-stm32_template/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/build
-.PHONY : stm32_template/fast
+STM32103_m/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/build
+.PHONY : STM32103_m/fast
 
 #=============================================================================
 # Target rules for targets named bin
@@ -173,7 +173,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -181,7 +181,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -189,7 +189,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/main.c.s
 .PHONY : main.c.s
 
 stm32/startup/startup_stm32f10x_md.o: stm32/startup/startup_stm32f10x_md.c.o
@@ -197,7 +197,7 @@ stm32/startup/startup_stm32f10x_md.o: stm32/startup/startup_stm32f10x_md.c.o
 
 # target to build an object file
 stm32/startup/startup_stm32f10x_md.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.o
 .PHONY : stm32/startup/startup_stm32f10x_md.c.o
 
 stm32/startup/startup_stm32f10x_md.i: stm32/startup/startup_stm32f10x_md.c.i
@@ -205,7 +205,7 @@ stm32/startup/startup_stm32f10x_md.i: stm32/startup/startup_stm32f10x_md.c.i
 
 # target to preprocess a source file
 stm32/startup/startup_stm32f10x_md.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.i
 .PHONY : stm32/startup/startup_stm32f10x_md.c.i
 
 stm32/startup/startup_stm32f10x_md.s: stm32/startup/startup_stm32f10x_md.c.s
@@ -213,7 +213,7 @@ stm32/startup/startup_stm32f10x_md.s: stm32/startup/startup_stm32f10x_md.c.s
 
 # target to generate assembly for a file
 stm32/startup/startup_stm32f10x_md.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/startup/startup_stm32f10x_md.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.s
 .PHONY : stm32/startup/startup_stm32f10x_md.c.s
 
 stm32/system_stm32f10x.o: stm32/system_stm32f10x.c.o
@@ -221,7 +221,7 @@ stm32/system_stm32f10x.o: stm32/system_stm32f10x.c.o
 
 # target to build an object file
 stm32/system_stm32f10x.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.o
 .PHONY : stm32/system_stm32f10x.c.o
 
 stm32/system_stm32f10x.i: stm32/system_stm32f10x.c.i
@@ -229,7 +229,7 @@ stm32/system_stm32f10x.i: stm32/system_stm32f10x.c.i
 
 # target to preprocess a source file
 stm32/system_stm32f10x.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.i
 .PHONY : stm32/system_stm32f10x.c.i
 
 stm32/system_stm32f10x.s: stm32/system_stm32f10x.c.s
@@ -237,7 +237,7 @@ stm32/system_stm32f10x.s: stm32/system_stm32f10x.c.s
 
 # target to generate assembly for a file
 stm32/system_stm32f10x.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/stm32/system_stm32f10x.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.s
 .PHONY : stm32/system_stm32f10x.c.s
 
 syscalls/syscalls.o: syscalls/syscalls.c.o
@@ -245,7 +245,7 @@ syscalls/syscalls.o: syscalls/syscalls.c.o
 
 # target to build an object file
 syscalls/syscalls.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/syscalls/syscalls.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.o
 .PHONY : syscalls/syscalls.c.o
 
 syscalls/syscalls.i: syscalls/syscalls.c.i
@@ -253,7 +253,7 @@ syscalls/syscalls.i: syscalls/syscalls.c.i
 
 # target to preprocess a source file
 syscalls/syscalls.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/syscalls/syscalls.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.i
 .PHONY : syscalls/syscalls.c.i
 
 syscalls/syscalls.s: syscalls/syscalls.c.s
@@ -261,7 +261,7 @@ syscalls/syscalls.s: syscalls/syscalls.c.s
 
 # target to generate assembly for a file
 syscalls/syscalls.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/syscalls/syscalls.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.s
 .PHONY : syscalls/syscalls.c.s
 
 # Help Target
@@ -275,7 +275,7 @@ help:
 	@echo "... bin"
 	@echo "... flash"
 	@echo "... hex"
-	@echo "... stm32_template"
+	@echo "... STM32103_m"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
