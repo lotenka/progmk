@@ -31,6 +31,7 @@ int __attribute((noreturn)) main(void) {
     
 }*/
 // git check
+
 #include <stdint.h>
 #include <stm32f10x.h>
 #include <stdbool.h>
@@ -51,6 +52,7 @@ int MIN(uint32_t arr[]) {
     return min;
 }
 #define MAX(a,b) (((a)>=(b))?(a):(b))
+#define MIN_EX(a,b) (((a)<=(b))?(a):(b))
 
 //delay в микросекундах. 1 итерация -- 8 тактов, 9 итераций -- 8*9*1/72 = 1мкс
 void delay_us(uint32_t us) {
@@ -137,11 +139,11 @@ int __attribute((noreturn)) main(void)
 	//включаем тактирование порта A
 	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
 	//конфигурируем GPIOA 3-5 пины на вход
-	GPIOA->CRL = GPIOA->CRL & ~(GPIO_CRL_CNF3|GPIO_CRL_CNF4|GPIO_CRL_CNF5 |
-	  GPIO_CRL_MODE3|GPIO_CRL_MODE4|GPIO_CRL_MODE5) |
-	  GPIO_CRL_CNF3_1|GPIO_CRL_CNF4_1|GPIO_CRL_CNF5_1;
+	GPIOA->CRL = GPIOA->CRL & ~(GPIO_CRL_CNF1|GPIO_CRL_CNF2|GPIO_CRL_CNF3|GPIO_CRL_CNF4|GPIO_CRL_CNF5 |
+	  GPIO_CRL_MODE1|GPIO_CRL_MODE2|GPIO_CRL_MODE3|GPIO_CRL_MODE4|GPIO_CRL_MODE5) |
+	  GPIO_CRL_CNF1_1|GPIO_CRL_CNF2_1|GPIO_CRL_CNF3_1|GPIO_CRL_CNF4_1|GPIO_CRL_CNF5_1;
 	//включаем подтяжку к питанию
-	GPIOA->ODR |= GPIO_ODR_ODR3|GPIO_ODR_ODR4|GPIO_ODR_ODR5;
+	GPIOA->ODR |= GPIO_ODR_ODR1|GPIO_ODR_ODR2|GPIO_ODR_ODR3|GPIO_ODR_ODR4|GPIO_ODR_ODR5;
 
 /*
 	//Конфигурация SySTick
@@ -156,16 +158,25 @@ int __attribute((noreturn)) main(void)
 		delay_ms(200);
 	}
 	*/
-	uint32_t t1 = 500; //led switch period ON
-	const uint32_t t2 = 50;  //button check period
-    const uint32_t t3 = 50;
-    const uint32_t t4 = 50;
+	bool duty_cycle = true;
+	uint32_t d = 90; // koef dutycycle
 
-	uint32_t p[] = {t1, t2, t3, t4};
+	uint32_t t1 = 500; //led switch period ON
+	uint32_t p1 = t1 * d / 100;
+	uint32_t p2 = t1 * (100 - d) / 100;
+	const uint32_t t2 = 50;
+	const uint32_t t3 = 50;  //button check period
+    const uint32_t t4 = 50;
+    const uint32_t t5 = 50;
+	const uint32_t t6 = 50;
+
+	uint32_t p[] = {t1, t2, t3, t4, t5, t6};
 	//У кого-то это кнопка PB9
 	bool prevButtonState5 = GPIOA->IDR & GPIO_IDR_IDR5;
     bool prevButtonState4 = GPIOA->IDR & GPIO_IDR_IDR4;
     bool prevButtonState3 = GPIOA->IDR & GPIO_IDR_IDR3;
+	bool prevButtonState2 = GPIOA->IDR & GPIO_IDR_IDR2;
+	bool prevButtonState1 = GPIOA->IDR & GPIO_IDR_IDR1;
 
 	bool ledBlink = true;
 
@@ -173,13 +184,19 @@ int __attribute((noreturn)) main(void)
 	{
 		uint32_t tau = MIN(p);
 		delay_ms(tau);
-		for (int i=0; i<4; i++) {
+		uint32_t p1 = t1 * d / 100;
+		uint32_t p2 = t1 * (100 - d) / 100;
+		for (int i=0; i<8; i++) {
 			p[i] -= tau;
 		}
 		if (p[0] == 0) {
 			if (ledBlink)
 				gpioToggle(GPIOC, 13);
-			p[0] = t1;
+			if (duty_cycle)
+				p[0] = p1;
+			else
+				p[0] = p2;
+			duty_cycle = !duty_cycle;
 		}
 		if (p[1] == 0) {
 			//PB9 кнопка mid
@@ -193,20 +210,38 @@ int __attribute((noreturn)) main(void)
 		if (p[2] == 0) {
 			//A4 button UP
 			bool newState4 = GPIOA->IDR & GPIO_IDR_IDR4;
-			if (!newState4 && prevButtonState4 && (t1 <= 1000))
-				//increase led blink delay by 10ms
+			if (!newState4 && prevButtonState4 && (t1 < 1000))
+				//increase led blink delay by 5ms
 				t1 += 5;
-			
+				
 			p[2] = t3;
 		}
 		if (p[3] == 0) {
 			//A3 button DOWN
 			bool newState3 = GPIOA->IDR & GPIO_IDR_IDR3;
 			if (!newState3 && prevButtonState3 && (t1 > 10))
-				//decrease led blink delay by 10ms
+				//decrease led blink delay by 5ms
 				t1 -= 5;
 			
 			p[3] = t4;
-		}		
+		}
+		if (p[4] == 0) {
+			//A2 button RIGHT increase duty cycle koef
+			bool newState2 = GPIOA->IDR & GPIO_IDR_IDR2;
+			if (!newState2 && prevButtonState2 && (d < 90))
+				//decrease duty cycle koef by 5%
+				d += 5;
+			
+			p[4] = t5;
+		}
+		if (p[5] == 0) {
+			//A3 button LEFT decrease duty cycle koef
+			bool newState1 = GPIOA->IDR & GPIO_IDR_IDR1;
+			if (!newState1 && prevButtonState1 && (d > 10))
+				//decrease duty_cycle koef by 5%
+				d -= 5;
+			
+			p[5] = t6;
+		}
 	}
 }
