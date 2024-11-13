@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
+set(CMAKE_VERBOSE_MAKEFILE 1)
 
 # Disable compiler checking
 # Otherwise it will fall with `reference to _exit() not found` error
@@ -22,6 +23,7 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
 
 set(CMAKE_EXECUTABLE_SUFFIX ".elf")
+set(ROOT_LD_FILENAME "stm32f103_basic.ld")
 
 set(CMAKE_C_FLAGS "-mcpu=cortex-m3 -mthumb -std=c99")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fdata-sections -ffunction-sections -mlittle-endian -g3")
@@ -30,7 +32,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-move-loop-invariants -fsigned-char -ffr
 set(LINKER_FLAGS "-nostdlib -nostartfiles")
 set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -Map -Xlinker ${TARGET_NAME}.map ")
 # Choose ld file for your MCU carefully
-set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -T ${CMAKE_CURRENT_SOURCE_DIR}/stm32f103c8.ld")
+# old ld-script path: 
+# set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -T ${CMAKE_CURRENT_SOURCE_DIR}/stm32f103c8.ld")
+set(LINKER_FLAGS "${LINKER_FLAGS} -Xlinker -T ${CMAKE_CURRENT_SOURCE_DIR}/${ROOT_LD_FILENAME}")
 # set(LINKER_FLAGS "${LINKER_FLAGS} -mcpu=cortex-m3 -mthumb -nostartfiles -g ") #Not necessary
 set(LINKER_FLAGS "${LINKER_FLAGS} -Wl,--gc-sections ")
 # Passing flags to cmake linker variable
@@ -38,14 +42,20 @@ set(CMAKE_C_LINK_FLAGS ${LINKER_FLAGS})
 
 message("DIRECTORY ${EXECUTABLE_OUTPUT_PATH}")
 
+configure_file(stm32f103_basic.ld.in "${CMAKE_CURRENT_SOURCE_DIR}/${ROOT_LD_FILENAME}")
+
 # Preprocessor definitions set MCU family and so-called "density"
 add_definitions(-DSTM32F103C8)
 add_definitions(-DSTM32F10X_MD)
 # We don't use SPL in out template
 # add_definitions(-DUSE_STDPERIPH_DRIVER)
+add_definitions(-DSTM32F1)
 
 include_directories(cmsis)
 include_directories(stm32)
+
+#Add freertos
+add_subdirectory(libs/FreeRTOS)
 
 set(SOURCE_FILES
     stm32/startup/startup_stm32f10x_md.c # Choose startup file for your MCU
@@ -55,7 +65,33 @@ set(SOURCE_FILES
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/.gdbinit DESTINATION ${EXECUTABLE_OUTPUT_PATH})
 
+
+
+set(OPENCM3_PATH ${PROJECT_SOURCE_DIR}/libs/libopencm3)
+# It's a library build target from external makefile
+include(ExternalProject)
+ExternalProject_Add(opencm3_build
+   SOURCE_DIR ${OPENCM3_PATH}
+   CONFIGURE_COMMAND ""
+   BUILD_COMMAND
+   PREFIX=${ARM_TOOLCHAIN_PATH}arm-none-eabi-
+   TARGETS=stm32/f1
+   make -C <SOURCE_DIR>
+   BUILD_IN_SOURCE TRUE
+   INSTALL_COMMAND "")
+
 add_executable(${TARGET_NAME} ${SOURCE_FILES})
+
+add_dependencies(${TARGET_NAME} opencm3)
+# Public include dirs for lib
+set(OPENCM3_INC_DIRS "${OPENCM3_PATH}/include")
+# Specify library name to import
+add_library(opencm3 STATIC IMPORTED)
+# Library must be build via `opencm3_build` before linking
+add_dependencies(opencm3 opencm3_build)
+# Set location of library and it's public headers
+set_target_properties(opencm3 PROPERTIES IMPORTED_LOCATION ${OPENCM3_PATH}/lib/libopencm3_stm32f1.a INTERFACE_INCLUDE_DIRECTORIES ${OPENCM3_INC_DIRS})
+target_link_libraries(${PROJECT_NAME} opencm3 freertos_kernel)
 
 # Targets for make firmware in different formats
 set(BIN_TARGET "${EXECUTABLE_OUTPUT_PATH}/${TARGET_NAME}.bin")
