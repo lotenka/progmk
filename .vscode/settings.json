@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "/home/lot/progmk/STM32103_m",
+    "files.associations": {
+        "stm32f10x.h": "c",
+        "gpio.h": "c"
+    }
+}

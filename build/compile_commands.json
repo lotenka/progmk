@@ -1,0 +1,86 @@
+[
+{
+  "directory": "/home/lot/progmk/build",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -isystem /home/lot/progmk/STM32103_m/libs/libopencm3/include -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.o -c /home/lot/progmk/STM32103_m/stm32/startup/startup_stm32f10x_md.c",
+  "file": "/home/lot/progmk/STM32103_m/stm32/startup/startup_stm32f10x_md.c",
+  "output": "CMakeFiles/STM32103_m.dir/stm32/startup/startup_stm32f10x_md.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -isystem /home/lot/progmk/STM32103_m/libs/libopencm3/include -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.o -c /home/lot/progmk/STM32103_m/stm32/system_stm32f10x.c",
+  "file": "/home/lot/progmk/STM32103_m/stm32/system_stm32f10x.c",
+  "output": "CMakeFiles/STM32103_m.dir/stm32/system_stm32f10x.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -isystem /home/lot/progmk/STM32103_m/libs/libopencm3/include -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.o -c /home/lot/progmk/STM32103_m/syscalls/syscalls.c",
+  "file": "/home/lot/progmk/STM32103_m/syscalls/syscalls.c",
+  "output": "CMakeFiles/STM32103_m.dir/syscalls/syscalls.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -isystem /home/lot/progmk/STM32103_m/libs/libopencm3/include -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/STM32103_m.dir/main.c.o -c /home/lot/progmk/STM32103_m/main.c",
+  "file": "/home/lot/progmk/STM32103_m/main.c",
+  "output": "CMakeFiles/STM32103_m.dir/main.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/croutine.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/croutine.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/croutine.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/croutine.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/event_groups.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/event_groups.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/event_groups.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/event_groups.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/list.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/list.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/list.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/list.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/queue.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/queue.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/queue.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/queue.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/stream_buffer.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/stream_buffer.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/stream_buffer.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/stream_buffer.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/tasks.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/tasks.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/tasks.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/tasks.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/timers.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/timers.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/timers.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/timers.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/port/mpu_wrappers.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/port/mpu_wrappers.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/port/mpu_wrappers.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/port/mpu_wrappers.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/port/port.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/port/port.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/port/port.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/port/port.c.o"
+},
+{
+  "directory": "/home/lot/progmk/build/libs/FreeRTOS",
+  "command": "arm-none-eabi-gcc -DSTM32F1 -DSTM32F103C8 -DSTM32F10X_MD -I/home/lot/progmk/STM32103_m/cmsis -I/home/lot/progmk/STM32103_m/stm32 -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/include -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/port -I/home/lot/progmk/STM32103_m/libs/FreeRTOS/. -mcpu=cortex-m3 -mthumb -std=c99 -fdata-sections -ffunction-sections -mlittle-endian -g3 -fno-move-loop-invariants -fsigned-char -ffreestanding -g -o CMakeFiles/freertos_kernel.dir/MemMang/heap_4.c.o -c /home/lot/progmk/STM32103_m/libs/FreeRTOS/MemMang/heap_4.c",
+  "file": "/home/lot/progmk/STM32103_m/libs/FreeRTOS/MemMang/heap_4.c",
+  "output": "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/MemMang/heap_4.c.o"
+}
+]

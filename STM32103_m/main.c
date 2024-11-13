@@ -1,10 +1,18 @@
 #include <stdint.h>
-#include <stm32f10x.h>
+//#include <stm32f10x.h>
 #include <stdbool.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/timer.h>
+#include <libopencmsis/core_cm3.h>
+#include <task.h>
+#include <FreeRTOS.h>
+#include <libopencm3/stm32/usart.h>
+
 
 void delay(uint32_t ticks) {
 	for (int i=0; i<ticks; i++) {
-		__NOP();
+		;//__NOP();
 	}
 }
 
@@ -45,27 +53,28 @@ void delay_ms(uint32_t ms) {
 
 //Port Number: A,B,C,...
 //Pin number (line)
+/*
 void gpioToggle(GPIO_TypeDef* port, uint32_t lineNo) {
 	const uint32_t mask = (1<<lineNo);
 	uint16_t gpio = port->ODR & mask;
 	port->BSRR = (gpio << 16) | (~gpio & mask);
 	//BSRR: [31:16] -- reset, [15:0] -- set
 }
-
+*/
 static volatile uint32_t Counter = 0;
 
 void SysTick_Handler() {
 	//Do some periodic action
 	Counter++;
 }
-
+/*
 void TIM2_IRQHandler(void){
 	if (TIM2->SR & TIM_SR_UIF){
 		gpioToggle(GPIOC, 13);
 		TIM2->SR &= ~TIM_SR_UIF;
 	}
 }
-
+*/
 //getter
 uint32_t getSystemCounter() {
 	return Counter;
@@ -101,17 +110,7 @@ void TIM2_IRQHandler(void) {
 }*/
 
 int __attribute((noreturn)) main(void) {
-	RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
-	//CRL: пины 0-7, CRH: пины 8-15
-	GPIOC->CRH = GPIOC->CRH & ~(GPIO_CRH_CNF13 | GPIO_CRH_MODE13) | GPIO_CRH_MODE13_0; //PC13 = output
-	//включаем тактирование порта A
-	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
-	//конфигурируем GPIOA 3-5 пины на вход
-	GPIOA->CRL = GPIOA->CRL & ~(GPIO_CRL_CNF3|GPIO_CRL_CNF4|GPIO_CRL_CNF5 |
-	  GPIO_CRL_MODE3|GPIO_CRL_MODE4|GPIO_CRL_MODE5) |
-	  GPIO_CRL_CNF3_1|GPIO_CRL_CNF4_1|GPIO_CRL_CNF5_1;
-	//включаем подтяжку к питанию
-	GPIOA->ODR |= GPIO_ODR_ODR3|GPIO_ODR_ODR4|GPIO_ODR_ODR5;
+
 
 #if 0
 	const uint32_t t1 = 500; //led switch period
@@ -161,37 +160,23 @@ int __attribute((noreturn)) main(void) {
 		;
 	}
 #endif
-	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
-	RCC->APB1RSTR |= RCC_APB1RSTR_TIM2RST;
-	RCC->APB1RSTR &= ~RCC_APB1RSTR_TIM2RST;
+	rcc_clock_setup_pll(&rcc_hse_configs[RCC_CLOCK_HSE8_72MHZ]);
+	//UART
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_USART1);
+	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, 
+		GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO9);
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
+		GPIO_CNF_INPUT_FLOAT, GPIO10);
 
-	//Alternate output mode для линии аппаратного ШИМ
-	GPIOA->CRL = GPIOA->CRL & ~(GPIO_CRL_CNF1|GPIO_CRL_MODE1) |
-	  GPIO_CRL_CNF1_1|GPIO_CRL_MODE1_0; //CNF: 10, MODE: 01
 
-	GPIOA->CRL = GPIOA->CRL & ~(GPIO_CRL_CNF2|GPIO_CRL_MODE2) |
-	  GPIO_CRL_CNF2_1|GPIO_CRL_MODE2_0; //CNF: 10, MODE: 01
+	usart_set_baudrate(USART1, 9600);
+	usart_set_mode(USART1, USART_MODE_TX);
+	usart_set_stopbits(USART1, USART_CR2_STOPBITS_1);
+	usart_enable(USART1);
+	while (1){
+		uint32_t byte = usart_recv_blocking(USART1);
+		usart_send_blocking(USART1, byte);
 
-	//Why 36 - 1?
-	//TIM2->PSC = 36 - 1;
-	TIM2->PSC = 1000;
-	//Pochemy zadaem ARR pered configurirovaniem ARPE?
-	TIM2->ARR = 4096;
-	//Why we set 400 and 800?
-	//TIM2->CCR2 = 400; // CCR2 -- Канал 2 на PA1 по даташиту(!)
-	//TIM2->CCR3 = 800; // CCR3 -- Канал 3
-	TIM2->DIER = TIM_DIER_UIE;
-	
-	NVIC_ClearPendingIRQ(TIM2_IRQn);
-	NVIC_EnableIRQ(TIM2_IRQn);
-	//TIM2->CR1 |= TIM_CR1_ARPE;
-	//TIM2->CCMR1 |= TIM_CCMR1_OC2M_1|TIM_CCMR1_OC2M_2; //set PWM Mode 1
-	//TIM2->CCMR2 |= TIM_CCMR2_OC3M_1|TIM_CCMR2_OC3M_2;
-
-	//TIM2->CCER |= TIM_CCER_CC2E | TIM_CCER_CC3E; //Enable timer channel out
-	TIM2->CR1 |= TIM_CR1_CEN; // Start timer
-	while (1) { 
-		__asm volatile ("nop"); 
 	}
-
 }

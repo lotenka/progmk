@@ -1,0 +1,10 @@
+/home/lot/progmk/build/CMakeFiles/opencm3_build.dir
+/home/lot/progmk/build/CMakeFiles/STM32103_m.dir
+/home/lot/progmk/build/CMakeFiles/bin.dir
+/home/lot/progmk/build/CMakeFiles/hex.dir
+/home/lot/progmk/build/CMakeFiles/flash.dir
+/home/lot/progmk/build/CMakeFiles/edit_cache.dir
+/home/lot/progmk/build/CMakeFiles/rebuild_cache.dir
+/home/lot/progmk/build/libs/FreeRTOS/CMakeFiles/freertos_kernel.dir
+/home/lot/progmk/build/libs/FreeRTOS/CMakeFiles/edit_cache.dir
+/home/lot/progmk/build/libs/FreeRTOS/CMakeFiles/rebuild_cache.dir

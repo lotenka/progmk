@@ -1,0 +1,124 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "libs/FreeRTOS",
+					"jsonFile" : "directory-libs.FreeRTOS-Debug-b957abc1fd331151ea39.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "libs/FreeRTOS",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "STM32103_m",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "STM32103_m::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-STM32103_m-Debug-dbf5b091d2f4dbc2fb85.json",
+					"name" : "STM32103_m",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bin-Debug-088169fcb8756949270c.json",
+					"name" : "bin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "flash::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-flash-Debug-d0f0a771d79ad1b0fcc8.json",
+					"name" : "flash",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "freertos_kernel::@006b8cc3d05969d94941",
+					"jsonFile" : "target-freertos_kernel-Debug-67ba6e71cff36d65c473.json",
+					"name" : "freertos_kernel",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "hex::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-hex-Debug-89c47c3971aff112350f.json",
+					"name" : "hex",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "opencm3_build::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-opencm3_build-Debug-d24cfcbdcb7f4daf63e4.json",
+					"name" : "opencm3_build",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/lot/progmk/build",
+		"source" : "/home/lot/progmk/STM32103_m"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
