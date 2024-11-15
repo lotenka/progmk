@@ -161,7 +161,7 @@ int __attribute((noreturn)) main(void) {
 	}
 #endif
 	rcc_clock_setup_pll(&rcc_hse_configs[RCC_CLOCK_HSE8_72MHZ]);
-	//UART
+	//USART
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_USART1);
 	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, 
