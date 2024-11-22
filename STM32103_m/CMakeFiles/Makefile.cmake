@@ -11,6 +11,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
   "CMakeLists.txt"
+  "libs/FreeRTOS/CMakeLists.txt"
+  "opencm3_build-prefix/tmp/opencm3_build-mkdirs.cmake"
+  "stm32f103_basic.ld.in"
   "/usr/share/cmake-3.28/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake"
@@ -23,6 +26,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.28/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.28/Modules/ExternalProject.cmake"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/PatchInfo.txt.in"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/RepositoryInfo.txt.in"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/UpdateInfo.txt.in"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/cfgcmd.txt.in"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/mkdirs.cmake.in"
+  "/usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake"
   "/usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake"
@@ -39,13 +49,22 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "stm32f103_basic.ld.in"
+  "opencm3_build-prefix/tmp/opencm3_build-mkdirs.cmake"
+  "opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-source_dirinfo.txt"
+  "opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-update-info.txt"
+  "opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-patch-info.txt"
+  "opencm3_build-prefix/tmp/opencm3_build-cfgcmd.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libs/FreeRTOS/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/STM32103_m.dir/DependInfo.cmake"
+  "CMakeFiles/opencm3_build.dir/DependInfo.cmake"
+  "CMakeFiles/stm32_template.dir/DependInfo.cmake"
   "CMakeFiles/bin.dir/DependInfo.cmake"
   "CMakeFiles/hex.dir/DependInfo.cmake"
   "CMakeFiles/flash.dir/DependInfo.cmake"
+  "libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/DependInfo.cmake"
   )

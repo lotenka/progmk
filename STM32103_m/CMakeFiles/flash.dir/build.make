@@ -68,17 +68,17 @@ include CMakeFiles/flash.dir/progress.make
 
 CMakeFiles/flash: flash_target
 
-flash_target: STM32103_m.bin
+flash_target: build/stm32_template.bin
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating flash_target"
-	st-flash write /home/lot/progmk/STM32103_m/STM32103_m.bin 0x8000000
+	st-flash write /home/lot/progmk/STM32103_m/build/stm32_template.bin 0x8000000
 
-STM32103_m.bin: STM32103_m.elf
-STM32103_m.bin: STM32103_m.elf
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating STM32103_m.bin"
-	arm-none-eabi-objcopy -O binary /home/lot/progmk/STM32103_m/STM32103_m.elf /home/lot/progmk/STM32103_m/STM32103_m.bin
+build/stm32_template.bin: build/stm32_template.elf
+build/stm32_template.bin: build/stm32_template.elf
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating build/stm32_template.bin"
+	arm-none-eabi-objcopy -O binary /home/lot/progmk/STM32103_m/build/stm32_template.elf /home/lot/progmk/STM32103_m/build/stm32_template.bin
 
 flash: CMakeFiles/flash
-flash: STM32103_m.bin
+flash: build/stm32_template.bin
 flash: flash_target
 flash: CMakeFiles/flash.dir/build.make
 .PHONY : flash

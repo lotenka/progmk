@@ -66,15 +66,15 @@ include CMakeFiles/hex.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/hex.dir/progress.make
 
-CMakeFiles/hex: STM32103_m.hex
+CMakeFiles/hex: build/stm32_template.hex
 
-STM32103_m.hex: STM32103_m.elf
-STM32103_m.hex: STM32103_m.elf
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating STM32103_m.hex"
-	arm-none-eabi-objcopy -O ihex /home/lot/progmk/STM32103_m/build/STM32103_m.elf /home/lot/progmk/STM32103_m/build/STM32103_m.hex
+build/stm32_template.hex: build/stm32_template.elf
+build/stm32_template.hex: build/stm32_template.elf
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating build/stm32_template.hex"
+	arm-none-eabi-objcopy -O ihex /home/lot/progmk/STM32103_m/build/build/stm32_template.elf /home/lot/progmk/STM32103_m/build/build/stm32_template.hex
 
 hex: CMakeFiles/hex
-hex: STM32103_m.hex
+hex: build/stm32_template.hex
 hex: CMakeFiles/hex.dir/build.make
 .PHONY : hex
 

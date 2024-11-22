@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build-complete.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-build.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-configure.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-download.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-install.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-mkdir.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-patch.rule"
+		},
+		{
+			"file" : "/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"opencm3_build"
+		],
+		"name" : "opencm3_build"
+	}
+}

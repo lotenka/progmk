@@ -1,0 +1,13 @@
+# Target labels
+ opencm3_build
+# Source files and their labels
+/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build
+/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build.rule
+/home/lot/progmk/STM32103_m/CMakeFiles/opencm3_build-complete.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-build.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-configure.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-download.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-install.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-mkdir.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-patch.rule
+/home/lot/progmk/STM32103_m/opencm3_build-prefix/src/opencm3_build-stamp/opencm3_build-update.rule

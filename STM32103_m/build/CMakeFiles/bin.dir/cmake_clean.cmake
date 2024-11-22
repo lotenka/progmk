@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/bin"
-  "STM32103_m.bin"
+  "build/stm32_template.bin"
 )
 
 # Per-language clean rules from dependency scanning.

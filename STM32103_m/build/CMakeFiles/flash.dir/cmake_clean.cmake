@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/flash"
-  "STM32103_m.bin"
+  "build/stm32_template.bin"
   "flash_target"
 )
 

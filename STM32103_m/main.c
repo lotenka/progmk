@@ -1,18 +1,25 @@
 #include <stdint.h>
-//#include <stm32f10x.h>
 #include <stdbool.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/timer.h>
 #include <libopencmsis/core_cm3.h>
-#include <task.h>
-#include <FreeRTOS.h>
+//#include <libopencm3/stm32/spi.h>
 #include <libopencm3/stm32/usart.h>
+#include <FreeRTOS.h>
+#include <task.h>
+
+
+void hard_fault_handler() {
+	while (1) {
+		;
+	}
+}
+
 
 
 void delay(uint32_t ticks) {
 	for (int i=0; i<ticks; i++) {
-		;//__NOP();
+		;
 	}
 }
 
@@ -48,80 +55,111 @@ void delay_ms(uint32_t ms) {
 	//Упрощённо: delay_us(ms * 1000);
 }
 
-#define LED_PIN_NO 13
-
-
-//Port Number: A,B,C,...
-//Pin number (line)
-/*
-void gpioToggle(GPIO_TypeDef* port, uint32_t lineNo) {
-	const uint32_t mask = (1<<lineNo);
-	uint16_t gpio = port->ODR & mask;
-	port->BSRR = (gpio << 16) | (~gpio & mask);
-	//BSRR: [31:16] -- reset, [15:0] -- set
-}
-*/
-static volatile uint32_t Counter = 0;
-
-void SysTick_Handler() {
-	//Do some periodic action
-	Counter++;
-}
-/*
-void TIM2_IRQHandler(void){
-	if (TIM2->SR & TIM_SR_UIF){
-		gpioToggle(GPIOC, 13);
-		TIM2->SR &= ~TIM_SR_UIF;
-	}
-}
-*/
-//getter
-uint32_t getSystemCounter() {
-	return Counter;
+void cmd(uint8_t command) {
+	//gpio_set(); //RS
+	//spi_send();
+	//
 }
 
+//static uint8_t Buffer[256] = {0};
+bool Command = false;
+bool LedState = false;
 
-/*
-void TIM2_IRQHandler() {
-	if (TIM2->SR & TIM_SR_CC1IF) {
-		gpioToggle(GPIOC, 13);
-		TIM2->SR &= ~TIM_SR_CC1IF;
-	}
-	if (TIM2->SR & TIM_SR_UIF) {
-		gpioToggle(GPIOC, 13);
-		TIM2->SR &= ~TIM_SR_UIF;
+void usart1_isr (void) {
+	//USART1->SR в opencm3 вот так: 
+	//USART_SR(USART1)
+	if (USART_SR(USART1) & USART_SR_RXNE) //RXNE -- not empty 
+	//т.е. пришёл байт
+	{
+		uint8_t byte = usart_recv(USART1);
+		switch (byte) {
+			case 'E':
+			case 'e':
+				LedState = true;
+				Command = true;
+				break;
+			case 'D':
+			case 'd':
+				LedState = false;
+				Command = true;
+				break;
+			default:
+				;
+		}
 	}
 }
-*/
-//#define BUTTON_MASK (GPIO_IDR_IDR3|GPIO_IDR_IDR4|GPIO_IDR_IDR5)
 
-/*
-void TIM2_IRQHandler(void) {
-	//SR -- Status Register -- какое событие произошло
-	//CC1IF -- флаг события Compare (сравнение)
-	if (TIM2->SR & TIM_SR_CC1IF) {
-		gpioToggle(GPIOC, 13);
-		TIM2->SR &= ~TIM_SR_CC1IF;
+void usart_print(const char *str) {
+	while (*str != '\0') {
+		usart_send_blocking(USART1, *str);
+		str++;
 	}
-	if (TIM2->SR & TIM_SR_UIF != 0) {
-		gpioToggle(GPIOC, 13);
-		TIM2->SR &= ~TIM_SR_UIF;
+}
+
+
+//arg -- параметр задаче (который нам нужен)
+void taskBlink(void *arg) {
+	rcc_periph_clock_enable(RCC_GPIOC);
+	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
+		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
+	
+	//v -- void
+	//px -- pointer (void *)
+	//ul -- unsigned long
+	while (1) {
+		//ulTaskNotifyTake();
+
+		gpio_toggle(GPIOC, GPIO13);
+		vTaskDelay(1000); //1sec. delay
 	}
-}*/
+}
 
-int __attribute((noreturn)) main(void) {
+void taskControl(void *arg) {
+	rcc_periph_clock_enable(RCC_GPIOA);
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
+		GPIO_CNF_INPUT_PULL_UPDOWN, GPIO3|GPIO4|GPIO5);
+	//подтягивающие резисторы
+	gpio_set(GPIOA, GPIO3|GPIO4|GPIO5);
 
+	//опрос книпок
+	while (1) {
+		uint16_t state = 
+			gpio_get(GPIOA, GPIO3|GPIO4|GPIO5);
+		if (state & GPIO3) {
+			;
+		}
+		if (state & GPIO4) {
+			;
+		}
+		if (state & GPIO5) {
+			;
+		}
+		vTaskDelay(20); //20ms
+	}
+}
+
+
+int main(void) {
+	rcc_clock_setup_pll (&rcc_hse_configs [RCC_CLOCK_HSE8_72MHZ ]);
 
 #if 0
+	rcc_periph_clock_enable(RCC_GPIOC);
+	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
+		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
+
+	//PA 3,4,5 -- на вход!
+	rcc_periph_clock_enable(RCC_GPIOA);
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
+		GPIO_CNF_INPUT_PULL_UPDOWN, GPIO3|GPIO4|GPIO5);
+	//подтягивающие резисторы
+	gpio_set(GPIOA, GPIO3|GPIO4|GPIO5);
+
 	const uint32_t t1 = 500; //led switch period
 	const uint32_t t2 = 50;  //button check period
-
 	uint32_t p[2] = {t1, t2};
-	//У кого-то это кнопка PB9
-	bool prevButtonState = GPIOA->IDR & GPIO_IDR_IDR5;
-
+	
+	bool prevButtonState = gpio_get(GPIOA, GPIO5);
 	bool ledBlink = true;
-
 	while (1) {
 		uint32_t tau = MIN(p[0], p[1]);
 		delay_ms(tau);
@@ -130,12 +168,11 @@ int __attribute((noreturn)) main(void) {
 		}
 		if (p[0] == 0) {
 			if (ledBlink)
-				gpioToggle(GPIOC, 13);
+				gpio_toggle(GPIOC, GPIO13);
 			p[0] = t1;
 		}
 		if (p[1] == 0) {
-			//PB9 кнопка
-			bool newState = GPIOA->IDR & GPIO_IDR_IDR5;
+			bool newState = gpio_get(GPIOA, GPIO5);
 			if (!newState && prevButtonState)
 				ledBlink = !ledBlink; //switch led blink
 			prevButtonState = newState;
@@ -143,40 +180,62 @@ int __attribute((noreturn)) main(void) {
 		}
 	}
 #endif
-#if 0 	
-	//100us -- 1timer tick 
-	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
-	TIM2->PSC = 72 - 1;
-	TIM2->ARR = 1000;
-	TIM2->CCR1 = 1;
-	TIM2->DIER |= TIM_DIER_UIE | TIM_DIER_CC1IE;
-	//вкл. прервывание в ядре
-	NVIC_ClearPendingIRQ(TIM2_IRQn);
-	NVIC_SetPriority(TIM2_IRQn, 0);
-	NVIC_EnableIRQ(TIM2_IRQn);
-	TIM2->CR1 |= TIM_CR1_CEN; //вкл.
+/*
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_SPI1);
+	//MISO, MOSI, CLK, NSS, RS, RSE
+	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,
+	 GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO7);
+	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,
+	 GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO5);
+	//CS -- Chip select
+	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ,
+	 GPIO_CNF_OUTPUT_PUSHPULL, GPIO1|GPIO2|GPIO3);
 
-	while (1) {
-		;
-	}
-#endif
-	rcc_clock_setup_pll(&rcc_hse_configs[RCC_CLOCK_HSE8_72MHZ]);
-	//USART
+	//SPI
+	spi_init_master(SPI1, SPI_CR1_BR_FPCLK_DIV_64, 
+		SPI_CR1_CPOL, SPI_CR1_CPHA, SPI_CR1_DFF_8BIT,
+		SPI_CR1_MSBFIRST );
+	spi_enable(SPI1);
+*/
+#if 0	
+	rcc_periph_clock_enable(RCC_GPIOC);
+	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
+		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13); //PC13 LED
+	//USART1
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_USART1);
 	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, 
-		GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO9);
+		GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO9); //PA9 -- TX
 	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
-		GPIO_CNF_INPUT_FLOAT, GPIO10);
-
-
+		GPIO_CNF_INPUT_FLOAT, GPIO10); //PA10 -- RX
+	
 	usart_set_baudrate(USART1, 9600);
-	usart_set_mode(USART1, USART_MODE_TX);
+	usart_set_mode(USART1, USART_MODE_TX_RX);
+	//usart_set_databits(USART1, 8);
 	usart_set_stopbits(USART1, USART_CR2_STOPBITS_1);
+	//прерывание в периферии вкл.
+	usart_enable_rx_interrupt(USART1);
+	//NVIC -- в ядре MCU
+	nvic_set_priority(NVIC_USART1_IRQ, 0);
+	nvic_enable_irq(NVIC_USART1_IRQ);
 	usart_enable(USART1);
-	while (1){
-		uint32_t byte = usart_recv_blocking(USART1);
-		usart_send_blocking(USART1, byte);
 
+	while (1) {
+		if (Command) {
+			if (LedState)
+				gpio_set(GPIOC, GPIO13);
+			else
+				gpio_clear(GPIOC, GPIO13);
+			Command = false;
+			usart_print("OK\r\n");
+		}
 	}
+#endif
+	//Task -- задача
+	//создаём таск
+	xTaskCreate(taskBlink, "blink", 256, NULL, 0, NULL);
+	//handle -- "ручка" управления таском
+	//передаём управление пранировщику задач
+	vTaskStartScheduler();
 }

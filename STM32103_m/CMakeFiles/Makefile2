@@ -63,59 +63,105 @@ CMAKE_BINARY_DIR = /home/lot/progmk/STM32103_m
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/STM32103_m.dir/all
+all: CMakeFiles/opencm3_build.dir/all
+all: CMakeFiles/stm32_template.dir/all
+all: libs/FreeRTOS/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: libs/FreeRTOS/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/STM32103_m.dir/clean
+clean: CMakeFiles/opencm3_build.dir/clean
+clean: CMakeFiles/stm32_template.dir/clean
 clean: CMakeFiles/bin.dir/clean
 clean: CMakeFiles/hex.dir/clean
 clean: CMakeFiles/flash.dir/clean
+clean: libs/FreeRTOS/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/STM32103_m.dir
+# Directory level rules for directory libs/FreeRTOS
+
+# Recursive "all" directory target.
+libs/FreeRTOS/all: libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/all
+.PHONY : libs/FreeRTOS/all
+
+# Recursive "preinstall" directory target.
+libs/FreeRTOS/preinstall:
+.PHONY : libs/FreeRTOS/preinstall
+
+# Recursive "clean" directory target.
+libs/FreeRTOS/clean: libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/clean
+.PHONY : libs/FreeRTOS/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/opencm3_build.dir
 
 # All Build rule for target.
-CMakeFiles/STM32103_m.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=1,2,3,4,5 "Built target STM32103_m"
-.PHONY : CMakeFiles/STM32103_m.dir/all
+CMakeFiles/opencm3_build.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencm3_build.dir/build.make CMakeFiles/opencm3_build.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencm3_build.dir/build.make CMakeFiles/opencm3_build.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=15,16,17,18,19,20,21,22 "Built target opencm3_build"
+.PHONY : CMakeFiles/opencm3_build.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/STM32103_m.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 5
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/STM32103_m.dir/all
+CMakeFiles/opencm3_build.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/opencm3_build.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
-.PHONY : CMakeFiles/STM32103_m.dir/rule
+.PHONY : CMakeFiles/opencm3_build.dir/rule
 
 # Convenience name for target.
-STM32103_m: CMakeFiles/STM32103_m.dir/rule
-.PHONY : STM32103_m
+opencm3_build: CMakeFiles/opencm3_build.dir/rule
+.PHONY : opencm3_build
 
 # clean rule for target.
-CMakeFiles/STM32103_m.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/STM32103_m.dir/build.make CMakeFiles/STM32103_m.dir/clean
-.PHONY : CMakeFiles/STM32103_m.dir/clean
+CMakeFiles/opencm3_build.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/opencm3_build.dir/build.make CMakeFiles/opencm3_build.dir/clean
+.PHONY : CMakeFiles/opencm3_build.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/stm32_template.dir
+
+# All Build rule for target.
+CMakeFiles/stm32_template.dir/all: CMakeFiles/opencm3_build.dir/all
+CMakeFiles/stm32_template.dir/all: libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=23,24 "Built target stm32_template"
+.PHONY : CMakeFiles/stm32_template.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/stm32_template.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 20
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stm32_template.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
+.PHONY : CMakeFiles/stm32_template.dir/rule
+
+# Convenience name for target.
+stm32_template: CMakeFiles/stm32_template.dir/rule
+.PHONY : stm32_template
+
+# clean rule for target.
+CMakeFiles/stm32_template.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stm32_template.dir/build.make CMakeFiles/stm32_template.dir/clean
+.PHONY : CMakeFiles/stm32_template.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/bin.dir
 
 # All Build rule for target.
-CMakeFiles/bin.dir/all: CMakeFiles/STM32103_m.dir/all
+CMakeFiles/bin.dir/all: CMakeFiles/stm32_template.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bin.dir/build.make CMakeFiles/bin.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bin.dir/build.make CMakeFiles/bin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=6 "Built target bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=1 "Built target bin"
 .PHONY : CMakeFiles/bin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/bin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/bin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
 .PHONY : CMakeFiles/bin.dir/rule
@@ -133,15 +179,15 @@ CMakeFiles/bin.dir/clean:
 # Target rules for target CMakeFiles/hex.dir
 
 # All Build rule for target.
-CMakeFiles/hex.dir/all: CMakeFiles/STM32103_m.dir/all
+CMakeFiles/hex.dir/all: CMakeFiles/stm32_template.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hex.dir/build.make CMakeFiles/hex.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hex.dir/build.make CMakeFiles/hex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=9 "Built target hex"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=14 "Built target hex"
 .PHONY : CMakeFiles/hex.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/hex.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/hex.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
 .PHONY : CMakeFiles/hex.dir/rule
@@ -159,15 +205,15 @@ CMakeFiles/hex.dir/clean:
 # Target rules for target CMakeFiles/flash.dir
 
 # All Build rule for target.
-CMakeFiles/flash.dir/all: CMakeFiles/STM32103_m.dir/all
+CMakeFiles/flash.dir/all: CMakeFiles/stm32_template.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=7,8 "Built target flash"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=2,3 "Built target flash"
 .PHONY : CMakeFiles/flash.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/flash.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/flash.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
 .PHONY : CMakeFiles/flash.dir/rule
@@ -180,6 +226,32 @@ flash: CMakeFiles/flash.dir/rule
 CMakeFiles/flash.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/flash.dir/build.make CMakeFiles/flash.dir/clean
 .PHONY : CMakeFiles/flash.dir/clean
+
+#=============================================================================
+# Target rules for target libs/FreeRTOS/CMakeFiles/freertos_kernel.dir
+
+# All Build rule for target.
+libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/all:
+	$(MAKE) $(MAKESILENT) -f libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/build.make libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/depend
+	$(MAKE) $(MAKESILENT) -f libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/build.make libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=4,5,6,7,8,9,10,11,12,13 "Built target freertos_kernel"
+.PHONY : libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/all
+
+# Build rule for subdir invocation for target.
+libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 10
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lot/progmk/STM32103_m/CMakeFiles 0
+.PHONY : libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/rule
+
+# Convenience name for target.
+freertos_kernel: libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/rule
+.PHONY : freertos_kernel
+
+# clean rule for target.
+libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/build.make libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/clean
+.PHONY : libs/FreeRTOS/CMakeFiles/freertos_kernel.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

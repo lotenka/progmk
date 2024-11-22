@@ -66,15 +66,15 @@ include CMakeFiles/bin.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/bin.dir/progress.make
 
-CMakeFiles/bin: STM32103_m.bin
+CMakeFiles/bin: build/stm32_template.bin
 
-STM32103_m.bin: STM32103_m.elf
-STM32103_m.bin: STM32103_m.elf
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating STM32103_m.bin"
-	arm-none-eabi-objcopy -O binary /home/lot/progmk/STM32103_m/STM32103_m.elf /home/lot/progmk/STM32103_m/STM32103_m.bin
+build/stm32_template.bin: build/stm32_template.elf
+build/stm32_template.bin: build/stm32_template.elf
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/lot/progmk/STM32103_m/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating build/stm32_template.bin"
+	arm-none-eabi-objcopy -O binary /home/lot/progmk/STM32103_m/build/stm32_template.elf /home/lot/progmk/STM32103_m/build/stm32_template.bin
 
 bin: CMakeFiles/bin
-bin: STM32103_m.bin
+bin: build/stm32_template.bin
 bin: CMakeFiles/bin.dir/build.make
 .PHONY : bin
 
