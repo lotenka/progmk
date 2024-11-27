@@ -7,7 +7,7 @@ events:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
       - "CMakeLists.txt:8 (project)"
     message: |
-      The system is: Linux - 6.8.0-45-generic - x86_64
+      The system is: Linux - 6.8.0-48-generic - x86_64
   -
     kind: "message-v1"
     backtrace:
@@ -121,21 +121,21 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-406HzR"
-      binary: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-406HzR"
+      source: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-y33tJz"
+      binary: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-y33tJz"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-406HzR'
+        Change Dir: '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-y33tJz'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c4bd8/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_c4bd8.dir/build.make CMakeFiles/cmTC_c4bd8.dir/build
-        gmake[1]: Entering directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-406HzR'
-        Building C object CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o
-        /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3ced5/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3ced5.dir/build.make CMakeFiles/cmTC_3ced5.dir/build
+        gmake[1]: Entering directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-y33tJz'
+        Building C object CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o
+        /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-gcc
         Target: arm-none-eabi
@@ -143,8 +143,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 13.2.1 20231009 (15:13.2.rel1-2) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c4bd8.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.1/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c4bd8.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccoaFcmw.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_3ced5.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.1/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_3ced5.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccxKrjAB.s
         GNU C17 (15:13.2.rel1-2) version 13.2.1 20231009 (arm-none-eabi)
         	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -157,15 +157,15 @@ events:
          /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: 3dedaaa4c0ce80076a39ed0b54adff9d
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c4bd8.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o /tmp/ccoaFcmw.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_3ced5.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o /tmp/ccxKrjAB.s
         GNU assembler version 2.42 (arm-none-eabi) using BFD version (2.42-1ubuntu1+23) 2.42
         COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/
         LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_c4bd8
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4bd8.dir/link.txt --verbose=1
-        /usr/bin/arm-none-eabi-gcc  -v -rdynamic CMakeFiles/cmTC_c4bd8.dir/CMakeCCompilerABI.c.o -o cmTC_c4bd8 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_3ced5
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ced5.dir/link.txt --verbose=1
+        /usr/bin/arm-none-eabi-gcc  -v -rdynamic CMakeFiles/cmTC_3ced5.dir/CMakeCCompilerABI.c.o -o cmTC_3ced5 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-gcc
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-none-eabi/13.2.1/lto-wrapper
@@ -175,9 +175,9 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 13.2.1 20231009 (15:13.2.rel1-2) 
-        gmake[1]: *** [CMakeFiles/cmTC_c4bd8.dir/build.make:99: cmTC_c4bd8] Error 1
-        gmake[1]: Leaving directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-406HzR'
-        gmake: *** [Makefile:127: cmTC_c4bd8/fast] Error 2
+        gmake[1]: *** [CMakeFiles/cmTC_3ced5.dir/build.make:99: cmTC_3ced5] Error 1
+        gmake[1]: Leaving directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-y33tJz'
+        gmake: *** [Makefile:127: cmTC_3ced5/fast] Error 2
         
       exitCode: 2
   -
@@ -189,21 +189,21 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-mZVfXU"
-      binary: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-mZVfXU"
+      source: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-Botv7L"
+      binary: "/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-Botv7L"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-mZVfXU'
+        Change Dir: '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-Botv7L'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9d0e7/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_9d0e7.dir/build.make CMakeFiles/cmTC_9d0e7.dir/build
-        gmake[1]: Entering directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-mZVfXU'
-        Building CXX object CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2431d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_2431d.dir/build.make CMakeFiles/cmTC_2431d.dir/build
+        gmake[1]: Entering directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-Botv7L'
+        Building CXX object CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-g++
         Target: arm-none-eabi
@@ -211,8 +211,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 13.2.1 20231009 (15:13.2.rel1-2) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9d0e7.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.1/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9d0e7.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccRfBf7M.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_2431d.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.1/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_2431d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/cc0aWrcu.s
         GNU C++17 (15:13.2.rel1-2) version 13.2.1 20231009 (arm-none-eabi)
         	compiled by GNU C version 13.2.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -228,15 +228,15 @@ events:
          /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: 59936bfd82d2454a91b227f7aec0e17a
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9d0e7.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccRfBf7M.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_2431d.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc0aWrcu.s
         GNU assembler version 2.42 (arm-none-eabi) using BFD version (2.42-1ubuntu1+23) 2.42
         COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/bin/
         LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.1/:/usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_9d0e7
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d0e7.dir/link.txt --verbose=1
-        /usr/bin/arm-none-eabi-g++  -v -rdynamic CMakeFiles/cmTC_9d0e7.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_9d0e7 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_2431d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2431d.dir/link.txt --verbose=1
+        /usr/bin/arm-none-eabi-g++  -v -rdynamic CMakeFiles/cmTC_2431d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2431d 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-g++
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-none-eabi/13.2.1/lto-wrapper
@@ -246,9 +246,9 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 13.2.1 20231009 (15:13.2.rel1-2) 
-        gmake[1]: *** [CMakeFiles/cmTC_9d0e7.dir/build.make:99: cmTC_9d0e7] Error 1
-        gmake[1]: Leaving directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-mZVfXU'
-        gmake: *** [Makefile:127: cmTC_9d0e7/fast] Error 2
+        gmake[1]: *** [CMakeFiles/cmTC_2431d.dir/build.make:99: cmTC_2431d] Error 1
+        gmake[1]: Leaving directory '/home/lot/progmk/STM32103_m/build/CMakeFiles/CMakeScratch/TryCompile-Botv7L'
+        gmake: *** [Makefile:127: cmTC_2431d/fast] Error 2
         
       exitCode: 2
 ...

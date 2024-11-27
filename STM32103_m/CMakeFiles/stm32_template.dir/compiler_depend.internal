@@ -3,39 +3,10 @@
 
 CMakeFiles/stm32_template.dir/main.c.o
  /home/lot/progmk/STM32103_m/main.c
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/FreeRTOSConfig.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/FreeRTOS.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/deprecated_definitions.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/list.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/mpu_wrappers.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/portable.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/projdefs.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/include/task.h
- /home/lot/progmk/STM32103_m/libs/FreeRTOS/port/portmacro.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/common.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/cortex.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/memorymap.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/nvic.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/scb.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/cm3/systick.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/dispatch/nvic.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/common/gpio_common_all.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/common/rcc_common_all.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/common/usart_common_all.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/common/usart_common_f124.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/f1/gpio.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/f1/memorymap.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/f1/nvic.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/f1/rcc.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/f1/usart.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/gpio.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/memorymap.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/rcc.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencm3/stm32/usart.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencmsis/core_cm3.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencmsis/dispatch/irqhandlers.h
- /home/lot/progmk/STM32103_m/libs/libopencm3/include/libopencmsis/stm32/f1/irqhandlers.h
- /usr/lib/gcc/arm-none-eabi/13.2.1/include/stdbool.h
- /usr/lib/gcc/arm-none-eabi/13.2.1/include/stddef.h
+ /home/lot/progmk/STM32103_m/cmsis/core_cm3.h
+ /home/lot/progmk/STM32103_m/cmsis/core_cmFunc.h
+ /home/lot/progmk/STM32103_m/cmsis/core_cmInstr.h
+ /home/lot/progmk/STM32103_m/stm32/stm32f10x.h
+ /home/lot/progmk/STM32103_m/stm32/system_stm32f10x.h
  /usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h
 
