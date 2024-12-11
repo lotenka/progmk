@@ -55,7 +55,7 @@ include_directories(stm32)
 # Add path ro FreeRTOS library
 add_subdirectory(libs/FreeRTOS)
 
-set(SOURCE_FILES main.c)
+set(SOURCE_FILES main.c DFT.c)
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/.gdbinit DESTINATION ${EXECUTABLE_OUTPUT_PATH})
 

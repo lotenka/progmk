@@ -3,22 +3,13 @@
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencmsis/core_cm3.h>
-//#include <libopencm3/stm32/spi.h>
 #include <libopencm3/stm32/usart.h>
 #include <FreeRTOS.h>
 #include <task.h>
-
+#include <libopencm3/stm32/adc.h>
 
 void hard_fault_handler() {
 	while (1) {
-		;
-	}
-}
-
-
-
-void delay(uint32_t ticks) {
-	for (int i=0; i<ticks; i++) {
 		;
 	}
 }
@@ -55,40 +46,6 @@ void delay_ms(uint32_t ms) {
 	//Упрощённо: delay_us(ms * 1000);
 }
 
-void cmd(uint8_t command) {
-	//gpio_set(); //RS
-	//spi_send();
-	//
-}
-
-//static uint8_t Buffer[256] = {0};
-bool Command = false;
-bool LedState = false;
-
-void usart1_isr (void) {
-	//USART1->SR в opencm3 вот так: 
-	//USART_SR(USART1)
-	if (USART_SR(USART1) & USART_SR_RXNE) //RXNE -- not empty 
-	//т.е. пришёл байт
-	{
-		uint8_t byte = usart_recv(USART1);
-		switch (byte) {
-			case 'E':
-			case 'e':
-				LedState = true;
-				Command = true;
-				break;
-			case 'D':
-			case 'd':
-				LedState = false;
-				Command = true;
-				break;
-			default:
-				;
-		}
-	}
-}
-
 void usart_print(const char *str) {
 	while (*str != '\0') {
 		usart_send_blocking(USART1, *str);
@@ -96,109 +53,146 @@ void usart_print(const char *str) {
 	}
 }
 
+char * uint16tohex(char *buffer, uint16_t value) {
+	for (int i=3; i>=0; i--) {
+		uint32_t nibble = (value >> i*4) & 0xF;
+		if (nibble <= 9)
+			*buffer = nibble + '0';
+		else //nibble >9
+			*buffer = (nibble - 10) + 'a';
+		buffer++;
+	}
+	return buffer;
+}
+
+void init_uart() {
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_USART1);
+	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, 
+		GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO9); //PA9 -- TX
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
+		GPIO_CNF_INPUT_FLOAT, GPIO10); //PA10 -- RX
+	usart_set_baudrate(USART1, 9600);
+	usart_set_mode(USART1, USART_MODE_TX_RX);
+	//usart_set_databits(USART1, 8);
+	usart_set_stopbits(USART1, USART_CR2_STOPBITS_1);
+	usart_enable(USART1);
+}
+
+#define ADC_BUF_SIZE 1024
+static uint16_t ADCBuffer[ADC_BUF_SIZE] = {0};
+static uint16_t ADCBufPos = 0;
+static bool Complete = false;
+
+void adc1_2_isr() {
+	if (adc_eoc(ADC1)) {
+		uint16_t value = adc_read_regular(ADC1);
+		ADCBuffer[ADCBufPos] = value;
+		ADCBufPos = (ADCBufPos + 1)%ADC_BUF_SIZE;
+	}
+	if (ADCBufPos >= 1023) {
+		adc_power_off(ADC1);
+		Complete = true;
+	}
+
+	ADC_SR(ADC1) = 0; //Сброс флага прерывания
+}
+
+void adc_task(void *params) {
+	init_uart();
+
+	//Pa0
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_AFIO); //?
+	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
+		GPIO_CNF_INPUT_ANALOG, GPIO0);
+	rcc_periph_clock_enable(RCC_ADC1);
+	//Max. ADC clk = 14Mhz по Даташиту
+	adc_power_off(ADC1); //выкл.
+	delay_us(1000);
+	rcc_set_adcpre(RCC_CFGR_ADCPRE_PCLK2_DIV8);
+
+	adc_power_on(ADC1); //вкл.
+	adc_reset_calibration(ADC1);
+	adc_calibrate_async(ADC1); //стартуем калибровку
+	uint32_t cal_iteration = 0;
+	while (adc_is_calibrating(ADC1)) {
+		if (cal_iteration++ >= 100000) {
+			usart_print("Calibration timeout\r\n");
+			return;
+		}
+	}
+	adc_power_off(ADC1); //выкл.
+	//init adc
+	//Регулярная группа каналов. До 8каналов из 16 доступных
+	adc_set_regular_sequence(ADC1, 1, (uint8_t[]){ADC_CHANNEL0});
+	//Частота сэмплирования хитрая! В клоках, а не во времени!
+	adc_set_sample_time(ADC1, 0, ADC_SMPR_SMP_239DOT5CYC );
+	//F_adc / (smpr + 12.5)
+	//External trigger
+	//EXTSEL SWSTART -- Триггер ручного запуска ADC
+	adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_SWSTART);
+	adc_set_continuous_conversion_mode(ADC1); //вкл. непрерывный режим
+	adc_enable_eoc_interrupt(ADC1);
+	//вкл. питание
+	adc_power_on(ADC1);
+	nvic_enable_irq(NVIC_ADC1_2_IRQ);
+	nvic_set_priority(NVIC_ADC1_2_IRQ, 0);
+	delay_us(1000);
+
+	uint16_t value = 0;
+	adc_power_on(ADC1);
+	adc_start_conversion_regular(ADC1);
+
+	while (1) {
+		/*
+		adc_start_conversion_regular(ADC1);
+		//EOC --End of Convertion
+		while (!adc_eoc(ADC1)) ;
+		//DR -- Один единственный регистр на все каналы по очереди
+		value = adc_read_regular(ADC1);
+		uint32_t voltage = (3300 * value) / 4096;
+		//3300мВ -- напряжение питания
+		//4096 -- полный диапазон ADC
+		//выведем в uart
+		*/
+		
+		
+		if (Complete) {
+			
+			usart_print("Complete\r\n");
+			char buffer[32] = {0};
+			
+			for (int i = 0; i < ADC_BUF_SIZE; i++){
+				
+				uint16tohex(buffer, ADCBuffer[i]);
+				usart_print(buffer);
+				usart_print(" ");
+			}
+			
+			usart_print(buffer);
+			usart_print("\r\n");
+			Complete = false;
+	
+		}
+		vTaskDelay(300);
+	}
+}
 
 //arg -- параметр задаче (который нам нужен)
 void taskBlink(void *arg) {
 	rcc_periph_clock_enable(RCC_GPIOC);
 	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
 		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
-	
-	//v -- void
-	//px -- pointer (void *)
-	//ul -- unsigned long
 	while (1) {
-		//ulTaskNotifyTake();
-
 		gpio_toggle(GPIOC, GPIO13);
 		vTaskDelay(1000); //1sec. delay
 	}
 }
 
-void taskControl(void *arg) {
-	rcc_periph_clock_enable(RCC_GPIOA);
-	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
-		GPIO_CNF_INPUT_PULL_UPDOWN, GPIO3|GPIO4|GPIO5);
-	//подтягивающие резисторы
-	gpio_set(GPIOA, GPIO3|GPIO4|GPIO5);
-
-	//опрос книпок
-	while (1) {
-		uint16_t state = 
-			gpio_get(GPIOA, GPIO3|GPIO4|GPIO5);
-		if (state & GPIO3) {
-			;
-		}
-		if (state & GPIO4) {
-			;
-		}
-		if (state & GPIO5) {
-			;
-		}
-		vTaskDelay(20); //20ms
-	}
-}
-
-
 int main(void) {
 	rcc_clock_setup_pll (&rcc_hse_configs [RCC_CLOCK_HSE8_72MHZ ]);
-
-#if 0
-	rcc_periph_clock_enable(RCC_GPIOC);
-	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
-		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
-
-	//PA 3,4,5 -- на вход!
-	rcc_periph_clock_enable(RCC_GPIOA);
-	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
-		GPIO_CNF_INPUT_PULL_UPDOWN, GPIO3|GPIO4|GPIO5);
-	//подтягивающие резисторы
-	gpio_set(GPIOA, GPIO3|GPIO4|GPIO5);
-
-	const uint32_t t1 = 500; //led switch period
-	const uint32_t t2 = 50;  //button check period
-	uint32_t p[2] = {t1, t2};
-	
-	bool prevButtonState = gpio_get(GPIOA, GPIO5);
-	bool ledBlink = true;
-	while (1) {
-		uint32_t tau = MIN(p[0], p[1]);
-		delay_ms(tau);
-		for (int i=0; i<2; i++) {
-			p[i] -= tau;
-		}
-		if (p[0] == 0) {
-			if (ledBlink)
-				gpio_toggle(GPIOC, GPIO13);
-			p[0] = t1;
-		}
-		if (p[1] == 0) {
-			bool newState = gpio_get(GPIOA, GPIO5);
-			if (!newState && prevButtonState)
-				ledBlink = !ledBlink; //switch led blink
-			prevButtonState = newState;
-			p[1] = t2;
-		}
-	}
-#endif
-/*
-	rcc_periph_clock_enable(RCC_GPIOA);
-	rcc_periph_clock_enable(RCC_SPI1);
-	//MISO, MOSI, CLK, NSS, RS, RSE
-	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,
-	 GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO7);
-	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ,
-	 GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO5);
-	//CS -- Chip select
-	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ,
-	 GPIO_CNF_OUTPUT_PUSHPULL, GPIO1|GPIO2|GPIO3);
-
-	//SPI
-	spi_init_master(SPI1, SPI_CR1_BR_FPCLK_DIV_64, 
-		SPI_CR1_CPOL, SPI_CR1_CPHA, SPI_CR1_DFF_8BIT,
-		SPI_CR1_MSBFIRST );
-	spi_enable(SPI1);
-*/
-#if 0	
+#if 0	//Uart
 	rcc_periph_clock_enable(RCC_GPIOC);
 	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
 		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13); //PC13 LED
@@ -232,10 +226,9 @@ int main(void) {
 		}
 	}
 #endif
-	//Task -- задача
-	//создаём таск
 	xTaskCreate(taskBlink, "blink", 256, NULL, 0, NULL);
-	//handle -- "ручка" управления таском
-	//передаём управление пранировщику задач
+
+	xTaskCreate(adc_task, "ADC", 256, NULL, 0, NULL);
+
 	vTaskStartScheduler();
 }
