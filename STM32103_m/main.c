@@ -4,6 +4,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencmsis/core_cm3.h>
 #include <libopencm3/stm32/usart.h>
+#include <libopencm3/stm32/timer.h>
 #include <FreeRTOS.h>
 #include <task.h>
 #include <libopencm3/stm32/adc.h>
@@ -99,6 +100,28 @@ void adc1_2_isr() {
 }
 
 void adc_task(void *params) {
+	int tim_pre = 4;
+	rcc_periph_clock_enable(RCC_TIM2);
+	rcc_periph_reset_pulse(RST_TIM2);
+	timer_set_mode(TIM2, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
+	timer_set_prescaler(TIM2, tim_pre);
+	timer_disable_preload(TIM2);
+	timer_set_period(TIM2, 4500);
+
+	TIM_CR2(TIM2) |= TIM_CR2_MMS_ENABLE;
+	//TIM_CR2(TIM2) |= TIM_CR2_MMS_COMPARE_OC2REF;
+	timer_set_oc_mode(TIM2, TIM_OC2, TIM_OCM_PWM1);
+	TIM_CCR2(TIM2) = TIM_ARR(TIM2/2);
+	timer_enable_oc_output(TIM2, TIM_OC2);
+
+	
+
+	timer_enable_irq(TIM2, TIM_DIER_UIE);
+
+//	nvic_enable_irq(NVIC_TIM2_IRQ);
+//	nvic_clear_pending_irq(NVIC_TIM2_IRQ);
+	
+
 	init_uart();
 
 	//Pa0
@@ -131,8 +154,9 @@ void adc_task(void *params) {
 	//F_adc / (smpr + 12.5)
 	//External trigger
 	//EXTSEL SWSTART -- Триггер ручного запуска ADC
-	adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_SWSTART);
-	adc_set_continuous_conversion_mode(ADC1); //вкл. непрерывный режим
+	//adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_SWSTART);
+	adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_TIM2_CC2);
+	//adc_set_continuous_conversion_mode(ADC1); //вкл. непрерывный режим
 	adc_enable_eoc_interrupt(ADC1);
 	//вкл. питание
 	adc_power_on(ADC1);
@@ -143,6 +167,7 @@ void adc_task(void *params) {
 	uint16_t value = 0;
 	adc_power_on(ADC1);
 	adc_start_conversion_regular(ADC1);
+	timer_enable_counter(TIM2);
 
 	while (1) {
 		/*
@@ -178,7 +203,41 @@ void adc_task(void *params) {
 		vTaskDelay(300);
 	}
 }
+/*
+void TIM2_IRQHandler(void) {
+//void tim2_isr(void) {
+   gpio_toggle(GPIOC, GPIO13);
+   timer_clear_flag(TIM2, TIM_SR_UIF);
+}
 
+void taskTimer(void *arg){
+	int tim_pre = 4;
+	rcc_periph_clock_enable(RCC_TIM2);
+	rcc_periph_reset_pulse(RST_TIM2);
+	timer_set_mode(TIM2, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
+	timer_set_prescaler(TIM2, tim_pre);
+	timer_disable_preload(TIM2);
+	timer_set_period(TIM2, 4500);
+
+	TIM_CR2(TIM2) |= TIM_CR2_MMS_ENABLE;
+	//TIM_CR2(TIM2) |= TIM_CR2_MMS_COMPARE_OC2REF;
+	timer_set_oc_mode(TIM2, TIM_OC2, TIM_OCM_PWM1);
+	TIM_CCR2(TIM2) = TIM_ARR(TIM2/2);
+	timer_enable_oc_output(TIM2, TIM_OC2);
+
+	
+
+	timer_enable_irq(TIM2, TIM_DIER_UIE);
+
+//	nvic_enable_irq(NVIC_TIM2_IRQ);
+//	nvic_clear_pending_irq(NVIC_TIM2_IRQ);
+	timer_enable_counter(TIM2);
+
+
+	while (1) { ; }
+
+}
+*/
 //arg -- параметр задаче (который нам нужен)
 void taskBlink(void *arg) {
 	rcc_periph_clock_enable(RCC_GPIOC);

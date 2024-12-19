@@ -1,0 +1,2 @@
+/usr/bin/arm-none-eabi-ar qc ../../lib/libfreertos_kernel.a CMakeFiles/freertos_kernel.dir/timers.c.o CMakeFiles/freertos_kernel.dir/tasks.c.o CMakeFiles/freertos_kernel.dir/stream_buffer.c.o CMakeFiles/freertos_kernel.dir/queue.c.o CMakeFiles/freertos_kernel.dir/list.c.o CMakeFiles/freertos_kernel.dir/event_groups.c.o CMakeFiles/freertos_kernel.dir/croutine.c.o CMakeFiles/freertos_kernel.dir/port/port.c.o CMakeFiles/freertos_kernel.dir/MemMang/heap_4.c.o
+/usr/bin/arm-none-eabi-ranlib ../../lib/libfreertos_kernel.a
