@@ -8,6 +8,7 @@
 #include <FreeRTOS.h>
 #include <task.h>
 #include <libopencm3/stm32/adc.h>
+#include "DFT.h"
 
 void hard_fault_handler() {
 	while (1) {
@@ -111,12 +112,12 @@ void adc_task(void *params) {
 	TIM_CR2(TIM2) |= TIM_CR2_MMS_ENABLE;
 	//TIM_CR2(TIM2) |= TIM_CR2_MMS_COMPARE_OC2REF;
 	timer_set_oc_mode(TIM2, TIM_OC2, TIM_OCM_PWM1);
-	TIM_CCR2(TIM2) = TIM_ARR(TIM2/2);
+	TIM_CCR2(TIM2) = TIM_ARR(TIM2)/2;
 	timer_enable_oc_output(TIM2, TIM_OC2);
 
 	
 
-	timer_enable_irq(TIM2, TIM_DIER_UIE);
+	//timer_enable_irq(TIM2, TIM_DIER_UIE);
 
 //	nvic_enable_irq(NVIC_TIM2_IRQ);
 //	nvic_clear_pending_irq(NVIC_TIM2_IRQ);
@@ -157,18 +158,21 @@ void adc_task(void *params) {
 	//adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_SWSTART);
 	adc_enable_external_trigger_regular(ADC1, ADC_CR2_EXTSEL_TIM2_CC2);
 	//adc_set_continuous_conversion_mode(ADC1); //вкл. непрерывный режим
+	adc_enable_scan_mode(ADC1);
 	adc_enable_eoc_interrupt(ADC1);
 	//вкл. питание
 	adc_power_on(ADC1);
 	nvic_enable_irq(NVIC_ADC1_2_IRQ);
 	nvic_set_priority(NVIC_ADC1_2_IRQ, 0);
+	
 	delay_us(1000);
 
-	uint16_t value = 0;
-	adc_power_on(ADC1);
+	//uint16_t value = 0;
 	adc_start_conversion_regular(ADC1);
 	timer_enable_counter(TIM2);
 
+	float *rdat = pvPortMalloc(sizeof(float) * ADC_BUF_SIZE);
+	float *idat = pvPortMalloc(sizeof(float) * ADC_BUF_SIZE);
 	while (1) {
 		/*
 		adc_start_conversion_regular(ADC1);
@@ -184,60 +188,52 @@ void adc_task(void *params) {
 		
 		
 		if (Complete) {
+			float maxValue = 0.0;
+			float minValue = 4096;
+			for(int i=0; i<ADC_BUF_SIZE; i++){
+				rdat[i] = ADCBuffer[i];
+				idat[i] = 0.0;
+				if (rdat[i] >= maxValue)
+					maxValue = rdat[i];
+				if (rdat[i] < minValue)
+					minValue = rdat[i];
+			}
+
+			float midValue = (maxValue + minValue) / 2.0;
+			for (int i=0; i<ADC_BUF_SIZE; i++){
+				rdat[i] = (rdat[i] - midValue) / (maxValue - minValue);
+			}
+
+			FFT(rdat, idat, ADC_BUF_SIZE, 10, FT_DIRECT);
+
+			minValue = -__FLT_MAX__;
+			for (int i=0; i<ADC_BUF_SIZE; i++){
+				rdat[i] = rdat[i]*rdat[i] + idat[i]*idat[i];
+				if (rdat[i] >= maxValue)
+					maxValue = rdat[i];
+			}
 			
 			usart_print("Complete\r\n");
 			char buffer[32] = {0};
 			
 			for (int i = 0; i < ADC_BUF_SIZE; i++){
-				
-				uint16tohex(buffer, ADCBuffer[i]);
+				uint16_t value = (rdat[i]/maxValue*4096);
+
+				uint16tohex(buffer, value);
 				usart_print(buffer);
-				usart_print(" ");
+				usart_print("\r\n");
 			}
 			
 			usart_print(buffer);
 			usart_print("\r\n");
 			Complete = false;
-	
+			
 		}
+
 		vTaskDelay(300);
 	}
 }
-/*
-void TIM2_IRQHandler(void) {
-//void tim2_isr(void) {
-   gpio_toggle(GPIOC, GPIO13);
-   timer_clear_flag(TIM2, TIM_SR_UIF);
-}
 
-void taskTimer(void *arg){
-	int tim_pre = 4;
-	rcc_periph_clock_enable(RCC_TIM2);
-	rcc_periph_reset_pulse(RST_TIM2);
-	timer_set_mode(TIM2, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);
-	timer_set_prescaler(TIM2, tim_pre);
-	timer_disable_preload(TIM2);
-	timer_set_period(TIM2, 4500);
-
-	TIM_CR2(TIM2) |= TIM_CR2_MMS_ENABLE;
-	//TIM_CR2(TIM2) |= TIM_CR2_MMS_COMPARE_OC2REF;
-	timer_set_oc_mode(TIM2, TIM_OC2, TIM_OCM_PWM1);
-	TIM_CCR2(TIM2) = TIM_ARR(TIM2/2);
-	timer_enable_oc_output(TIM2, TIM_OC2);
-
-	
-
-	timer_enable_irq(TIM2, TIM_DIER_UIE);
-
-//	nvic_enable_irq(NVIC_TIM2_IRQ);
-//	nvic_clear_pending_irq(NVIC_TIM2_IRQ);
-	timer_enable_counter(TIM2);
-
-
-	while (1) { ; }
-
-}
-*/
 //arg -- параметр задаче (который нам нужен)
 void taskBlink(void *arg) {
 	rcc_periph_clock_enable(RCC_GPIOC);
@@ -251,40 +247,7 @@ void taskBlink(void *arg) {
 
 int main(void) {
 	rcc_clock_setup_pll (&rcc_hse_configs [RCC_CLOCK_HSE8_72MHZ ]);
-#if 0	//Uart
-	rcc_periph_clock_enable(RCC_GPIOC);
-	gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, 
-		GPIO_CNF_OUTPUT_PUSHPULL, GPIO13); //PC13 LED
-	//USART1
-	rcc_periph_clock_enable(RCC_GPIOA);
-	rcc_periph_clock_enable(RCC_USART1);
-	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ, 
-		GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO9); //PA9 -- TX
-	gpio_set_mode(GPIOA, GPIO_MODE_INPUT,
-		GPIO_CNF_INPUT_FLOAT, GPIO10); //PA10 -- RX
-	
-	usart_set_baudrate(USART1, 9600);
-	usart_set_mode(USART1, USART_MODE_TX_RX);
-	//usart_set_databits(USART1, 8);
-	usart_set_stopbits(USART1, USART_CR2_STOPBITS_1);
-	//прерывание в периферии вкл.
-	usart_enable_rx_interrupt(USART1);
-	//NVIC -- в ядре MCU
-	nvic_set_priority(NVIC_USART1_IRQ, 0);
-	nvic_enable_irq(NVIC_USART1_IRQ);
-	usart_enable(USART1);
 
-	while (1) {
-		if (Command) {
-			if (LedState)
-				gpio_set(GPIOC, GPIO13);
-			else
-				gpio_clear(GPIOC, GPIO13);
-			Command = false;
-			usart_print("OK\r\n");
-		}
-	}
-#endif
 	xTaskCreate(taskBlink, "blink", 256, NULL, 0, NULL);
 
 	xTaskCreate(adc_task, "ADC", 256, NULL, 0, NULL);
