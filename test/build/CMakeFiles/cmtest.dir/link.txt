@@ -1,1 +1,0 @@
-/usr/bin/gcc -g -rdynamic CMakeFiles/cmtest.dir/test_1.c.o -o cmtest 

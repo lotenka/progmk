@@ -1,2 +1,0 @@
-/usr/bin/ar qc libmylib_test.a CMakeFiles/mylib_test.dir/scr/mylib_test.c.o
-/usr/bin/ranlib libmylib_test.a

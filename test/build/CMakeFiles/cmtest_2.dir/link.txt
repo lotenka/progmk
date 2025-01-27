@@ -1,1 +1,0 @@
-/usr/bin/gcc -g -rdynamic CMakeFiles/cmtest_2.dir/test_1.c.o -o cmtest_2  lib_custom/libmylib_test.a 

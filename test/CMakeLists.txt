@@ -1,6 +1,0 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(cmtest_2)
-include_directories(lib_custom/inc)
-add_subdirectory(lib_custom)
-add_executable(${PROJECT_NAME} test_1.c)
-target_link_libraries(${PROJECT_NAME} mylib_test)
